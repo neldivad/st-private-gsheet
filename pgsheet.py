@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from gsheetsdb import connect
+from google.oauth2 import service_account
 
 st.title("Try to connect to private google sheet")
 df = pd.DataFrame({"one": [1, 2, 3], "two": [4, 5, 6], "three": [7, 8, 9]})
