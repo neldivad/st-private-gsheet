@@ -17,6 +17,7 @@ credentials = service_account.Credentials.from_service_account_info(
 conn = connect(credentials=credentials)
 
 st.title("Connect to Google Sheets")
+st.write('[Link to original Gsheet](https://docs.google.com/spreadsheets/d/1jmRQJC4wQtSny-JTA3KLJ4BeVFdYU3qQanZerh_5IEU)')
 sheet_url = st.secrets["private_gsheets_url"]
 rows = conn.execute(f'SELECT * FROM "{sheet_url}"')
 df_gsheet = pd.DataFrame(rows)
