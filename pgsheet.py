@@ -33,7 +33,7 @@ arkk_df = make_df(arkk)
 st.write(arkk_df)
 
 st.subheader('ARKG data')
-arkg = st.secrets['arkkg_data']
+arkg = st.secrets['arkg_data']
 arkg_df = make_df(arkg)
 st.write(arkg_df)
 
