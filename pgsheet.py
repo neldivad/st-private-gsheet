@@ -21,7 +21,8 @@ def make_df(secrets):
 spreadsheet_id = '1jmRQJC4wQtSny-JTA3KLJ4BeVFdYU3qQanZerh_5IEU'
 def make_df2():
     # gc = pygsheets.authorize(service_account_file= st.secrets["service_file_path"])
-    gc = pygsheets.authorize(service_account_file= 'gsheet-key.json')
+    # gc = pygsheets.authorize(service_account_file= 'gsheet-key.json')
+    gc = pygsheets.authorize(custom_credentials= credentials)
     sh = gc.open_by_key(spreadsheet_id)
     sheetname = 'Daily ARKK data'
     worksheet1 = sh.worksheet(property= 'title', value= sheetname) 
