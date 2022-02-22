@@ -90,4 +90,5 @@ st.write(labels_df)
 
 st.subheader('Test Pygsheets')
 pgs_df = make_df2()
-st.write(pgs_df)
+test = pgs_df.astype(str)
+st.dataframe(test)
