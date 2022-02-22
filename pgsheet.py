@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from gsheetsdb import connect
 from google.oauth2 import service_account
+import pygsheets
 
 # Create a connection object.
 credentials = service_account.Credentials.from_service_account_info(
@@ -16,6 +17,15 @@ def make_df(secrets):
     rows = conn.execute(f'SELECT * FROM "{secrets}"')
     df_gsheet = pd.DataFrame(rows)
     return df_gsheet
+
+spreadsheet_id = '1jmRQJC4wQtSny-JTA3KLJ4BeVFdYU3qQanZerh_5IEU'
+def make_df2():
+    gc = pygsheets.authorize(service_account_file= st.secrets["gcp_service_account"])
+    sh.gc.open_by_key(spreadsheet_id)
+    sheetname = 'Daily ARKK data'
+    worksheet1 = sh.worksheet(property= 'title', value= sheetname) 
+    df2 = worksheet1.get_as_df()
+    return df2
     
 st.markdown("""
 # Connect to Google Sheets
@@ -77,4 +87,6 @@ labels = st.secrets['labels']
 labels_df = make_df(labels)
 st.write(labels_df)
 
-
+st.subheader('Test Pygsheets')
+pgs_df = make_df2()
+st.write(pgs_df)
