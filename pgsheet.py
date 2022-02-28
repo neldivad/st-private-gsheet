@@ -19,6 +19,8 @@ def make_df(secrets):
     return df_gsheet
 
 spreadsheet_id = '1jmRQJC4wQtSny-JTA3KLJ4BeVFdYU3qQanZerh_5IEU'
+
+@st.cache
 def make_df2():
     # gc = pygsheets.authorize(service_account_file= st.secrets["service_file_path"])
     # gc = pygsheets.authorize(service_account_file= 'gsheet-key.json')
