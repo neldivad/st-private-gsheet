@@ -34,7 +34,7 @@ spreadsheet_id = '1jmRQJC4wQtSny-JTA3KLJ4BeVFdYU3qQanZerh_5IEU'
 #     df2 = worksheet1.get_as_df()
 #     return df2
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def make_df2(spreadsheet_id, sheetname):
     credentials = service_account.Credentials.from_service_account_info(
         st.secrets["gcp_service_account"],
