@@ -15,6 +15,7 @@ credentials = service_account.Credentials.from_service_account_info(
 )
 conn = connect(credentials=credentials)
 
+@st.cache
 def make_df(secrets):
     rows = conn.execute(f'SELECT * FROM "{secrets}"')
     df_gsheet = pd.DataFrame(rows)
@@ -33,7 +34,7 @@ spreadsheet_id = '1jmRQJC4wQtSny-JTA3KLJ4BeVFdYU3qQanZerh_5IEU'
 #     df2 = worksheet1.get_as_df()
 #     return df2
 
-@st.cache
+# @st.cache
 def make_df2(spreadsheet_id, sheetname):
     credentials = service_account.Credentials.from_service_account_info(
         st.secrets["gcp_service_account"],
