@@ -22,16 +22,30 @@ def make_df(secrets):
 
 spreadsheet_id = '1jmRQJC4wQtSny-JTA3KLJ4BeVFdYU3qQanZerh_5IEU'
 
+# @st.cache
+# def make_df2():
+#     # gc = pygsheets.authorize(service_account_file= st.secrets["service_file_path"])
+#     # gc = pygsheets.authorize(service_account_file= 'gsheet-key.json')
+#     gc = pygsheets.authorize(custom_credentials= credentials)
+#     sh = gc.open_by_key(spreadsheet_id)
+#     sheetname = 'Daily ARKK data'
+#     worksheet1 = sh.worksheet(property= 'title', value= sheetname) 
+#     df2 = worksheet1.get_as_df()
+#     return df2
+
 @st.cache
-def make_df2():
-    # gc = pygsheets.authorize(service_account_file= st.secrets["service_file_path"])
-    # gc = pygsheets.authorize(service_account_file= 'gsheet-key.json')
+def make_df2(spreadsheet_id, sheetname):
+    credentials = service_account.Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"],
+        scopes=[
+            "https://www.googleapis.com/auth/spreadsheets",
+            ],
+    )
     gc = pygsheets.authorize(custom_credentials= credentials)
     sh = gc.open_by_key(spreadsheet_id)
-    sheetname = 'Daily ARKK data'
-    worksheet1 = sh.worksheet(property= 'title', value= sheetname) 
-    df2 = worksheet1.get_as_df()
-    return df2
+    worksheet = sh.worksheet(property= 'title', value= sheetname)
+    df = worksheet.get_as_df()
+    return df
     
 st.markdown("""
 # Connect to Google Sheets
@@ -106,7 +120,7 @@ labels_df = make_df(labels)
 AgGrid(labels_df)
 
 st.subheader('Test Pygsheets')
-pgs_df = make_df2()
+pgs_df = make_df2(spreadsheet_id, 'Daily ARKG data')
 test = pgs_df.astype(str)
 # st.write(test)
 AgGrid(test)
