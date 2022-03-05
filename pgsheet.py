@@ -1,4 +1,6 @@
 import streamlit as st
+from st_aggrid import AgGrid
+
 import pandas as pd
 from gsheetsdb import connect
 from google.oauth2 import service_account
@@ -45,6 +47,9 @@ st.subheader('ARKK data')
 arkk = st.secrets['arkk_data']
 arkk_df = make_df(arkk)
 st.write(arkk_df)
+
+st.subheader('ARKK data (AgGrid)')
+AgGrid(arkk_df)
 
 st.subheader('ARKG data')
 arkg = st.secrets['arkg_data']
