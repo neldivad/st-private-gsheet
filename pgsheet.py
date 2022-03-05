@@ -41,62 +41,74 @@ st.markdown("""
 sheet_url = st.secrets["private_gsheets_url"]
 rows = conn.execute(f'SELECT * FROM "{sheet_url}"')
 df_gsheet = pd.DataFrame(rows)
-st.write(df_gsheet)
+# st.write(df_gsheet)
+AgGrid(df_gsheet)
 
-st.subheader('ARKK data')
+# st.subheader('ARKK data')
 arkk = st.secrets['arkk_data']
 arkk_df = make_df(arkk)
-st.write(arkk_df)
-
+# st.write(arkk_df)
 st.subheader('ARKK data (AgGrid)')
 AgGrid(arkk_df)
 
 st.subheader('ARKG data')
 arkg = st.secrets['arkg_data']
 arkg_df = make_df(arkg)
-st.write(arkg_df)
+# st.write(arkg_df)
+AgGrid(arkg_df)
 
 st.subheader('ARKF data')
 arkf = st.secrets['arkf_data']
 arkf_df = make_df(arkf)
-st.write(arkf_df)
+# st.write(arkf_df)
+AgGrid(arkf_df)
 
 st.subheader('ARKQ data')
 arkq = st.secrets['arkq_data']
 arkq_df = make_df(arkq)
-st.write(arkq_df)
+# st.write(arkq_df)
+AgGrid(arkq_df)
 
 st.subheader('ARKW data')
 arkw = st.secrets['arkw_data']
 arkw_df = make_df(arkw)
-st.write(arkw_df)
+# st.write(arkw_df)
+AgGrid(arkw_df)
 
 st.subheader('ARKX data')
 arkx = st.secrets['arkx_data']
 arkx_df = make_df(arkx)
-st.write(arkx_df)
+# st.write(arkx_df)
+AgGrid(arkx_df)
 
 st.subheader('CTRU data')
 ctru = st.secrets['ctru_data']
 ctru_df = make_df(ctru)
-st.write(ctru_df)
+# st.write(ctru_df)
+AgGrid(ctru_df)
 
 st.subheader('PRNT data')
 prnt = st.secrets['prnt_data']
 prnt_df = make_df(prnt)
-st.write(prnt_df)
+# st.write(prnt_df)
+AgGrid(prnt_df)
 
 st.subheader('IZRL data')
 izrl = st.secrets['izrl_data']
 izrl_df = make_df(izrl)
-st.write(izrl_df)
+# st.write(izrl_df)
+AgGrid(izrl_df)
 
 st.subheader('Label data')
 labels = st.secrets['labels']
 labels_df = make_df(labels)
-st.write(labels_df)
+# st.write(labels_df)
+AgGrid(labels_df)
 
 st.subheader('Test Pygsheets')
 pgs_df = make_df2()
 test = pgs_df.astype(str)
-st.write(test)
+# st.write(test)
+AgGrid(test)
+st.subheader('Test Pygsheets ( without astype(str) )')
+AgGrid(pgs_df)
