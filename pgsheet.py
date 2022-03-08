@@ -120,6 +120,11 @@ labels_df = make_df(labels)
 # st.write(labels_df)
 AgGrid(labels_df)
 
+st.subheader('Labels (in-depth) data')
+labels2_df = make_df2(spreadsheet_id, 'ARK portfolio labels (in-depth)')
+# st.write(labels_df)
+AgGrid(labels2_df)
+
 st.subheader('Test Pygsheets')
 pgs_df = make_df2(spreadsheet_id, 'Daily ARKG data')
 test = pgs_df.astype(str)
